@@ -1,5 +1,6 @@
 package com.aveys.exope
 
 fun main(args: Array<String>){
-    println("Hello world")
+    val argsList = args.asList()
+    println(argsList)
 }
