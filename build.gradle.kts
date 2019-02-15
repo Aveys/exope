@@ -25,6 +25,16 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.4.0")
 }
 
+tasks.withType<Jar> {
+    baseName = "${rootProject.name}-fat"
+    manifest {
+        attributes["Implementation-Title"] = "exope"
+        attributes["Implementation-Version"] = version
+        attributes["Main-Class"] = "com.aveys.exope.MainKt"
+    }
+    from(configurations.runtime.map { if (it.isDirectory) it else zipTree(it) })
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
     testLogging {
